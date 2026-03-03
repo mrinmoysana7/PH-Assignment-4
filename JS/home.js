@@ -1,5 +1,5 @@
 let currentTab ="all"
-const tabActive = ["bg-[#3B82F6]", "text-white"];
+const tabActive = ["bg-[#7DA8FF]", "text-white"];
 const tabInActive = ["bg-white", "text-slate-700", "border-slate-200", "text-black"]
 
 const availableJobs = document.getElementById("jobs-container");
@@ -37,4 +37,42 @@ function switchTab (tab) {
     }
 }
 
+const totalNum = document.getElementById("stat-total");
+const inrterviewNum = document.getElementById("stat-interview");
+const rejectNum = document.getElementById("stat-reject");
+
+totalNum.innerText = availableJobs.children.length;
+
 switchTab(currentTab);
+
+document.getElementById("jobs-container").addEventListener("click", function(event){
+    // console.log(event.target);
+    const targetClickEvent = event.target;
+    const card = targetClickEvent.closest(".card");
+    const status = card.querySelector(".statuses");
+    const parent = card.parentNode;
+
+    if(targetClickEvent.classList.contains("interview")){
+       status.innerText = "Interviewed";
+       interviewTab.appendChild(card);
+       updateStatNumber()
+    }
+    if(targetClickEvent.classList.contains("rejected")){
+       status.innerText = "Rejected";
+       rejectTab.appendChild(card);
+       updateStatNumber()
+    }
+    if(targetClickEvent.classList.contains("delete")){
+        parent.removeChild(card);
+        updateStatNumber()
+    }
+    console.log(parent);
+});
+
+function updateStatNumber() {
+   totalNum.innerText = availableJobs.children.length;
+   inrterviewNum.innerText = interviewTab.children.length;
+   rejectNum.innerText = rejectTab.children.length;
+}
+
+updateStatNumber();
