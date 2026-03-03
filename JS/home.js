@@ -60,7 +60,7 @@ totalNum.innerText = availableJobs.children.length;
 
 switchTab(currentTab);
 
-document.getElementById("jobs-container").addEventListener("click", function(event){
+document.getElementById("all-container").addEventListener("click", function(event){
     // console.log(event.target);
     const targetClickEvent = event.target;
     const card = targetClickEvent.closest(".card");
@@ -97,7 +97,7 @@ availJob.innerText = stats[currentTab];
 if(stats[currentTab] < 1){
    noJob.classList.remove("hidden");
 } else {
-   noJob.classList.add("hidden");
+   noJob.classList.add("hidden");5
 }
 }
 
